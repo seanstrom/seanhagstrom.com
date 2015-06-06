@@ -1,0 +1,127 @@
+@import './github-gist-theme'
+
+*
+  box-sizing border-box
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  margin 0
+
+html
+  pre
+  code
+    @extend .hljs
+
+  pre
+    border 1px solid #f2f2f2
+
+  code
+    margin-bottom 0
+
+  blockquote
+    margin-left 0
+
+p > code
+  border 1px solid #f2f2f2
+  display inline-block
+
+.home
+  .post-item
+    a
+      margin-right 10px
+    h2
+      font-weight 400
+
+html body
+  background-color #FAFAFA
+  border-top 5px solid #CF9A9A
+  color #333
+  font 13px/1.4 Helvetica,arial,sans-serif
+  margin 0
+
+  header
+    border-bottom-width 2px
+    border-bottom-color #eaeaea
+    padding 20px 0 10px
+
+  footer
+    border-top-color #eaeaea
+    border-top none
+
+main
+  padding 10px 0
+
+nav ul li
+  margin-right 0
+
+body hr
+  background-color #eaeaea
+  color #eaeaea
+  height 2px
+
+.cf:before
+.cf:after
+  content ""
+  display table
+
+.cf:after
+  clear both
+
+.container
+  margin-left auto
+  margin-right auto
+  max-width 980px
+  padding 0 20px
+  width 100%
+
+.banner-header
+  margin 0
+
+.menu
+  float left
+
+.dash
+  margin 0 4px
+
+.pipe:before
+  color #F0E7E7
+  content '|'
+  font-size 40px
+  margin 0 10px 0 10px
+
+.pipe.first:before
+  margin 0 10px 0 0
+
+.site-header
+  display inline-block
+
+.site-header a
+  color #333
+
+.site-header a:hover
+  color #333
+  text-decoration none
+  
+.site-logo + hr
+  margin-bottom 10px
+
+.me
+  border-radius 5px
+  width 100%
+
+.placeholder
+  display inline-block
+  min-height 1px
+
+
+.menu-link
+  color #333
+  text-decoration none
+
+.menu-linkhover
+  color #105CB6
+
