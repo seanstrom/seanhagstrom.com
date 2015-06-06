@@ -1,0 +1,3 @@
+[submodule "src/essays"]
+	path = src/essays
+	url = git@github.com:seanstrom/essays.git
