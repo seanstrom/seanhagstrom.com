@@ -37,12 +37,12 @@ block main
     hr
     .row
       .col-6
-        if collections.posts && collections.posts.length > 0
-          each post in collections.posts
+        if collections.essays && collections.essays.length > 0
+          each essay in collections.essays
             .post-item
               h2
-                a(href='/'+post.path)!= post.title
-                span - #{moment(post.publishDate).format("YYYY")}
+                a(href='/'+essay.path)!= essay.title
+                span - #{moment(essay.publishDate).format("YYYY")}
         else
-          h2= collections.posts.length
+          h2= collections.essays.length
           p Nothing here yet, but plenty of stuff on the way.
