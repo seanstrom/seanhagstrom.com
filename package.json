@@ -10,6 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "gh-pages": "^0.3.0",
+    "gulp": "^3.9.0",
+    "gulpsmith": "^0.5.3",
+    "livescript": "^1.4.0",
     "metalsmith": "^1.7.0",
     "metalsmith-branch": "0.0.4",
     "metalsmith-collections": "^0.7.0",
