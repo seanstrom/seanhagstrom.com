@@ -1,17 +1,16 @@
 {
-  "name": "writing-site",
+  "name": "seanhagstrom-com",
   "version": "1.0.0",
-  "description": "",
+  "description": "My static site",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "seanstrom",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "gh-pages": "^0.3.0",
     "gulp": "^3.9.0",
+    "gulp-rimraf": "^0.1.1",
     "gulpsmith": "^0.5.3",
+    "highlight.js": "^8.6.0",
     "livescript": "^1.4.0",
     "metalsmith": "^1.7.0",
     "metalsmith-branch": "0.0.4",
@@ -27,8 +26,5 @@
     "moment": "^2.10.3",
     "then-jade": "^2.3.0"
   },
-  "dependencies": {
-    "highlight.js": "^8.6.0",
-    "pygmentize-bundled": "^2.3.0"
-  }
+  "dependencies": {}
 }

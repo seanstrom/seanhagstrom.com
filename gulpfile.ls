@@ -1,10 +1,11 @@
-gulp        = require 'gulp'
 metalsmith  = require 'metalsmith'
+gulp        = require 'gulp'
+rimraf      = require 'gulp-rimraf'
 gulpsmith   = require 'gulpsmith'
+path        = require 'path'
 moment      = require 'moment'
 highlighter = require 'highlight.js'
 ghpages     = require 'gh-pages'
-path        = require 'path'
 
 stylus      = require 'metalsmith-stylus'
 serve       = require 'metalsmith-serve'
@@ -21,83 +22,73 @@ metadata =
     title: 'sean hagstrom'
     url: 'seanhagstrom.com'
 
-content =
+pages-config = relative: false
+
+essays-config =
+  pattern: ':publishDate/:title'
+  date: 'YYYY/MM/DD'
+
+content-config =
   essays: 'essays/**.html'
   notEssays: '!essays/**.html'
   projects: 'projects/**.html'
 
-essayConfig =
-  pattern: ':publishDate/:title'
-  date: 'YYYY/MM/DD'
-
-collectionsConfig =
+collections-config =
   essays:
-    pattern: content.essays
+    pattern: content-config.essays
     sortBy: 'publishDate'
     reverse: true
   projects:
-    pattern: content.projects
+    pattern: content-config.projects
     sortBy: 'publishDate'
     reverse: true
 
-markedConfig =
+marked-config =
   gfm: true
   smartypants: false
   highlight: (code) -> highlighter.highlightAuto(code).value
 
-collectionsSetup = -> collections collectionsConfig
+paths-config =
+  paths:
+    "${source}/**/*": true
+    "templates/**/*": "**/*.jade"
 
-essaysSetup = -> branch('essays/**.html').use <| permalinks <| essayConfig
-
-pagesSetup = -> branch('!essays/**.html').use <| branch('!index.md').use <| permalinks <| relative: false
-
-templatesSetup = -> templates engine: 'jade', moment: moment
-
-serveSetup = -> serve port: 8080, verbose: true
-
-watchSetup = ->
-  paths =
-    paths:
-      "${source}/**/*": true
-      "templates/**/*": "**/*.jade"
-  paths |> watch
+log-status = (cond, succ-message, fail-message) ->
+  if cond
+  then console.log succ-message
+  else console.log fail-message
 
 buildSetup = -> (err) ->
-  if err
-    console.log err
-  else
-    console.log 'Site build complete!'
+  log-status !err, 'Built!', "Build Error: #{err}"
 
-gulp.task 'build', ->
+commonSteps = ->
   metalsmith(__dirname)
     .metadata metadata
     .source './src'
     .destination './build'
     .use stylus!
-    .use markdown markedConfig
     .use excerpts!
-    .use collectionsSetup!
-    .use essaysSetup!
-    .use pagesSetup!
-    .use templatesSetup!
+    .use markdown marked-config
+    .use collections collections-config
+    .use templates engine: 'jade', moment: moment
+    .use (branch('essays/**.html').use  <| permalinks <| essays-config)
+    .use (branch('!essays/**.html').use <| branch('!index.md').use <| permalinks <| pages-config)
+
+gulp.task 'build', ->
+  commonSteps!
     .build buildSetup!
 
 gulp.task 'serve', ->
-  metalsmith(__dirname)
-    .metadata metadata
-    .source './src'
-    .destination './build'
-    .use stylus!
-    .use markdown markedConfig
-    .use excerpts!
-    .use collectionsSetup!
-    .use essaysSetup!
-    .use pagesSetup!
-    .use templatesSetup!
-    .use serveSetup!
-    .use watchSetup!
+  commonSteps!
+    .use serve port: 8080, verbose: true
+    .use paths |> watch
     .build buildSetup!
 
+gulp.task 'clean', ->
+  gulp.src './build', read: false
+    .pipe rimraf!
+
 gulp.task 'deploy', ['build'], ->
-  ghpages.publish path.join(__dirname, 'build'), (err) ->
-    console.log(err)
+  dir = path.join(__dirname, 'build')
+  ghpages.publish dir, (err) ->
+    log-status !err, 'Deployed!', "Deploy Error: #{err}"
