@@ -61,18 +61,33 @@ log-status = (cond, succ-message, fail-message) ->
 buildSetup = -> (err) ->
   log-status !err, 'Built!', "Build Error: #{err}"
 
+essays-setup = ->
+  branch('essays/**.html').use
+  <| permalinks
+  <| essays-config
+
+pages-setup = ->
+  branch('!essays/**.html').use
+  <| branch('!index.md').use
+  <| permalinks
+  <| pages-config
+
+templates-config =
+  engine: 'jade'
+  moment: moment
+
 commonSteps = ->
   metalsmith(__dirname)
     .metadata metadata
     .source './src'
     .destination './build'
     .use stylus!
-    .use excerpts!
     .use markdown marked-config
+    .use excerpts!
     .use collections collections-config
-    .use templates engine: 'jade', moment: moment
-    .use (branch('essays/**.html').use  <| permalinks <| essays-config)
-    .use (branch('!essays/**.html').use <| branch('!index.md').use <| permalinks <| pages-config)
+    .use essays-setup!
+    .use pages-setup!
+    .use templates templates-config
 
 gulp.task 'build', ->
   commonSteps!
@@ -81,7 +96,7 @@ gulp.task 'build', ->
 gulp.task 'serve', ->
   commonSteps!
     .use serve port: 8080, verbose: true
-    .use paths |> watch
+    .use (paths-config |> watch)
     .build buildSetup!
 
 gulp.task 'clean', ->
