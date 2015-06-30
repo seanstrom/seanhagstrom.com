@@ -212,18 +212,33 @@ h5,
 h6 {
   margin: 0;
 }
+html {
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-weight: 300;
+}
 html pre {
   border: 1px solid #f2f2f2;
+  font-size: 110%;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 html code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   margin-bottom: 0;
 }
 html blockquote {
   margin-left: 0;
 }
 p > code {
+  background-color: rgba(0,0,0,0.04);
   border: 1px solid #f2f2f2;
-  display: inline-block;
+  border-radius: 3px;
+  display: inline;
+  font-size: 85%;
+  margin: 0;
+  padding: 0.2em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
 }
 .home .post-item a {
   margin-right: 10px;
@@ -235,7 +250,6 @@ html body {
   background-color: #fafafa;
   border-top: 5px solid #cf9a9a;
   color: #333;
-  font: 13px/1.4 Helvetica, arial, sans-serif;
   margin: 0;
 }
 html body header {
@@ -318,4 +332,18 @@ body hr {
 }
 .menu-linkhover {
   color: #105cb6;
+}
+article {
+  font-weight: 500;
+}
+article p {
+  font-size: 130%;
+  line-height: 140%;
+}
+article img {
+  max-width: 100%;
+}
+.home p {
+  font-size: 130%;
+  line-height: 140%;
 }
