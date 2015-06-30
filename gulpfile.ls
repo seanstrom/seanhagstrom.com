@@ -16,6 +16,7 @@ templates   = require 'metalsmith-templates'
 excerpts    = require 'metalsmith-excerpts'
 permalinks  = require 'metalsmith-permalinks'
 watch       = require 'metalsmith-watch'
+metallic    = require 'metalsmith-metallic'
 
 metadata =
   site:
@@ -46,7 +47,6 @@ collections-config =
 marked-config =
   gfm: true
   smartypants: false
-  highlight: (code) -> highlighter.highlightAuto(code).value
 
 paths-config =
   paths:
@@ -82,6 +82,7 @@ commonSteps = ->
     .source './src'
     .destination './build'
     .use stylus!
+    .use metallic!
     .use markdown marked-config
     .use excerpts!
     .use collections collections-config
