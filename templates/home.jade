@@ -2,41 +2,59 @@ extends layout
 
 block main
   section.home
+    .row.inset
+      .cute-12
+        h1.banner-header Yo.
+    .row.inset
+      .cute-12
+        p
+          | I'm a Software Developer / 
+          a(href='google') Software Hacker
+          |  who enjoys the theory and practice of programming. The culture of building things, solving problems, and sharing my work with a community is what drives me. My goal is to work on projects I care about and give contributions that will benefit the software community.
+      .cute-6-tablet
+        .tags
+          h3 Interests
+          span.tag
+            | Free Software
+          span.tag
+            | Open Source
+          span.tag
+            | GNU/Linux
+          span.tag
+            | Functional Programming
+          span.tag
+            | Javascript
+      .cute-6-tablet
+        .info.tags
+          h3 Info
+          span.tag
+            a(href='//github.com/seanstrom') Github
+          span.tag
+            a(href='//twitter.com/seanghagstrom') Twitter
+          span.tag
+            a(href='mailto:sean@seanhagstrom.com') sean@seanhagstrom.com
     .row
-      .col-12
-        h1.banner-header Hey I'm Sean, feel free to loiter.
-    .row
-      .col-12
-        p
-          | My name is Sean Hagstrom, I am a Software Developer who likes to talk about Programming, Free Software, Open Source, and various other topics.
-          | I don't do anything too special, I mainly write Javascript, but have dabbled in Ruby, Scala, and plenty of AltJS languages like: CoffeeScript, LiveScript, and PureScript.
-          | I primarily write Object Oriented code, while attempting to bring more and more Functional Programming into the mix. I am actually currently
-          | studying Functional Programming, as well as Reactive Programming, and at some point Functional Reactive Programming.
-        p
-          | I work at this place called <a href'//originate.com'>Originate</a> as a Javascript Developer, but I occasionally get
-          | my hands dirty with markup and CSS. I've recently have been working with a lot of React + Flux code which in turn has me researching
-          | native web components and such. I also work on some Node projects occasionally, but nothing too fancy. I mainly enjoy understanding the
-          | working internals of the Javascript Runtime and Node's Asynchronous model. I'm also enjoy writing powerful abstrations with
-          | features from ES5, ES6, and eventually ES7.
-        p
-          | I enjoy public speaking and giving presentations on anything I care about or anything that could help someone learn.
-          | I have several strong opinions on software architecture and code clarity, as well as a strong belief in isolated testing.
-          | I try to write about a lot of these things in several blogs, some aimed for more technical discussions, others aimed more to philosophy.
-          | I hope to grow into a positive influence in programming community and to keep learning without becoming an elitist.
-          | You can find me on <a href="//twitter.com/seanghagstrom">Twitter</a> and <a href="//github.com/seanstrom">Github</a> for the most part, and you can read my essays here too!
-          | Feel free to drop me a line in case you ever want to talk. <a href='mailto:sean@seanhagstrom.com'>sean@seanhagstrom.com</a>
-    div
-      h1 Projects
+      .cute-12
+        h1 Projects
     hr
-    .row
-      .col-6
+    .row.inset
+      .cute-6
         h2 N/A
         p Nothing here yet, but plenty of stuff on the way.
-    div
-      h1 Writing
-    hr
     .row
-      .col-6
+      .cute-12
+        h1 Talks
+    hr
+    .row.inset
+      .cute-6
+        h2 N/A
+        p Nothing here yet, but plenty of stuff on the way.
+    .row
+      .cute-12
+        h1 Writing
+    hr
+    .row.inset
+      .cute-6
         if collections.essays && collections.essays.length > 0
           each essay in collections.essays
             .post-item
