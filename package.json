@@ -6,7 +6,8 @@
   "author": "seanstrom",
   "license": "LGPL-3.0",
   "scripts": {
-    "build": "gulp serve",
+    "build": "gulp build",
+    "deploy": "gulp deploy",
     "serve": "gulp serve"
   },
   "devDependencies": {
