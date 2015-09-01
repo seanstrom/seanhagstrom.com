@@ -15,7 +15,6 @@ collections = require 'metalsmith-collections'
 templates   = require 'metalsmith-templates'
 excerpts    = require 'metalsmith-excerpts'
 permalinks  = require 'metalsmith-permalinks'
-watch       = require 'metalsmith-watch'
 metallic    = require 'metalsmith-metallic'
 
 metadata =
@@ -90,14 +89,15 @@ commonSteps = ->
     .use pages-setup!
     .use templates templates-config
 
-gulp.task 'build', ->
+build = ->
   commonSteps!
     .build buildSetup!
+
+gulp.task 'build', build
 
 gulp.task 'serve', ->
   commonSteps!
     .use serve port: 8080, verbose: true
-    .use (paths-config |> watch)
     .build buildSetup!
 
 gulp.task 'clean', ->
