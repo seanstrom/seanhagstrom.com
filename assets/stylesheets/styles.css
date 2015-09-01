@@ -379,3 +379,6 @@ article img {
 body {
   padding: 0 1em;
 }
+.home .about {
+  margin-bottom: 20px;
+}
