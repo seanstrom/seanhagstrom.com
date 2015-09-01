@@ -4,7 +4,11 @@
   "description": "My static site",
   "main": "index.js",
   "author": "seanstrom",
-  "license": "MIT",
+  "license": "LGPL-3.0",
+  "scripts": {
+    "build": "gulp serve",
+    "serve": "gulp serve"
+  },
   "devDependencies": {
     "gh-pages": "^0.3.0",
     "gulp": "^3.9.0",
