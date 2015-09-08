@@ -262,11 +262,17 @@ p > code {
   padding-top: 0.2em;
   padding-bottom: 0.2em;
 }
-.home .post-item a {
+.home .post-item h2,
+.home .talk-item h2 {
+  font-weight: 400;
+}
+.home .post-item .item-title,
+.home .talk-item .item-title {
   margin-right: 10px;
 }
-.home .post-item h2 {
-  font-weight: 400;
+.home .post-item .item-media,
+.home .talk-item .item-media {
+  margin-right: 10px;
 }
 html body {
   background-color: #fafafa;
