@@ -56,12 +56,12 @@ block main
                 if talk.videoLink
                   span.item-media
                     | [
-                    a(href=talk.videoLink) video
+                    a(target='_blank' href=talk.videoLink) video
                     |]
                 if talk.slidesLink
                   span.item-media
                     | [
-                    a(href=talk.slidesLink) slides
+                    a(target='_blank' href=talk.slidesLink) slides
                     |]
                 span.item-date - #{moment(talk.publishDate).format("YYYY")}
         else
