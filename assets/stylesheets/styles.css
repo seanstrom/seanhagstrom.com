@@ -382,3 +382,6 @@ body {
 .home .about {
   margin-bottom: 20px;
 }
+.section-title {
+  margin-bottom: 0.2em;
+}
