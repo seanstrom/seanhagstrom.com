@@ -30,12 +30,17 @@ essays-config =
 
 content-config =
   essays: 'essays/**.html'
+  talks: 'talks/**.html'
   notEssays: '!essays/**.html'
   projects: 'projects/**.html'
 
 collections-config =
   essays:
     pattern: content-config.essays
+    sortBy: 'publishDate'
+    reverse: true
+  talks:
+    pattern: content-config.talks
     sortBy: 'publishDate'
     reverse: true
   projects:

@@ -48,8 +48,25 @@ block main
     hr
     .row.inset
       .cute-6
-        h2 N/A
-        p Nothing here yet, but plenty of stuff on the way.
+        if collections.essays && collections.essays.length > 0
+          each talk in collections.talks
+            .talk-item
+              h2
+                span.item-title= talk.title
+                if talk.videoLink
+                  span.item-media
+                    | [
+                    a(href=talk.videoLink) video
+                    |]
+                if talk.slidesLink
+                  span.item-media
+                    | [
+                    a(href=talk.slidesLink) slides
+                    |]
+                span.item-date - #{moment(talk.publishDate).format("YYYY")}
+        else
+          h2= collections.essays.length
+          p Nothing here yet, but plenty of stuff on the way.
     .row
       .cute-12
         h1.section-title Writing
@@ -60,8 +77,9 @@ block main
           each essay in collections.essays
             .post-item
               h2
-                a(href='/'+essay.path)!= essay.title
-                span - #{moment(essay.publishDate).format("YYYY")}
+                span.item-title
+                  a(href='/'+essay.path)!= essay.title
+                span.item-date - #{moment(essay.publishDate).format("YYYY")}
         else
           h2= collections.essays.length
           p Nothing here yet, but plenty of stuff on the way.
