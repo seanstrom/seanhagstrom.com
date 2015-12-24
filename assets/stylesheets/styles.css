@@ -272,7 +272,10 @@ p > code {
 }
 .home .post-item .item-media,
 .home .talk-item .item-media {
-  margin-right: 10px;
+  margin-right: 4px;
+}
+.home .talk-item .item-date {
+  margin-left: 6px;
 }
 html body {
   background-color: #fafafa;
@@ -379,7 +382,7 @@ article img {
   padding: 5px;
   border-radius: 3px;
   border: 1px solid #ccc;
-  margin: 0 2px 2px 0;
+  margin: 0 4px 4px 0;
   display: inline-block;
 }
 body {
