@@ -1,0 +1,129 @@
+<!DOCTYPE html><html><head><title>The Importance of Values | sean hagstrom</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"><link rel="stylesheet" href="/assets/stylesheets/github-theme.css"><link rel="stylesheet" href="/assets/stylesheets/cutegrids.css"><link rel="stylesheet" href="/assets/stylesheets/minimal.css"><link rel="stylesheet" href="/assets/stylesheets/styles.css"><link rel="icon" type="image/jpeg" href="//s.gravatar.com/avatar/4039a78aa83044610a0c4ded01a2a5a8?s=16"></head><body><div class="row"><header><span class="pipe first"></span><h1 class="site-header"><a href="/">&lambda;!</a></h1><span class="pipe"></span><nav><a href="//twitter.com/seanghagstrom" class="menu-link">Twitter</a><span class="dash">-</span><a href="//github.com/seanstrom" class="menu-link">Github</a></nav></header><article id="article"><h1>The Importance of Values</h1><div><p><img src="http://4.bp.blogspot.com/_vt749aV4Y7Q/TQ0RGGCoOkI/AAAAAAAAFsA/fKNZwumM1fI/s1600/palace%2Bof%2Bzinn.jpg" alt=""></p>
+<h3 id="prelude">Prelude</h3>
+<p>Most of what&#39;s to be covered is an opinionated stance on how I write programs.<br>The concepts that will be covered can be applied to other languages, but we specifically target Javascript in the discussion. Also, for the sake of simplicity, certain topics are not explained in depth.<br>The fact is some concepts mentioned may need their own entire essay to be explained properly.<br>But I have tried to give enough of an introduction to them, while remaining focused on the core idea.<br>With all that said, let&#39;s begin.  </p>
+<h3 id="our-system">Our System</h3>
+<p>In an ideal system, our workflow would consist of composing together functions.<br>For example, code that would normally perform operations like: </p>
+<ul>
+<li>adding numbers</li>
+<li>manipulating strings</li>
+<li>iterating over data</li>
+</ul>
+<p>would now be modeled as functions.</p>
+<pre><code class="hljs coffeescript"><span class="hljs-function"><span class="hljs-title">add</span>         = <span class="hljs-params">(a, b)</span> -&gt;</span> a + b
+<span class="hljs-function"><span class="hljs-title">first</span>       =    <span class="hljs-params">(a)</span> -&gt;</span> a[<span class="hljs-number">0</span>]
+<span class="hljs-function"><span class="hljs-title">lowercase</span>   =    <span class="hljs-params">(a)</span> -&gt;</span> a.toLowerCase()
+<span class="hljs-function"><span class="hljs-title">shrinkFirst</span> =    <span class="hljs-params">(a)</span> -&gt;</span> lowercase (first a)
+<span class="hljs-function"><span class="hljs-title">abbreviate</span>  = <span class="hljs-params">(a, b)</span> -&gt;</span> add (shrinkFirst a), (shrinkFirst b)</code></pre>
+
+<p>The functions defined above all follow a simple pattern. They all take in <strong>values</strong> and return a <strong>value</strong>.<br>When using that pattern, we&#39;re able to use our generic functions to build up abstractions.<br>This is especially true when we start introducing our own values into the system.</p>
+<pre><code class="hljs coffeescript"><span class="hljs-comment"># Creating our own value</span>
+<span class="hljs-function">
+<span class="hljs-title">person</span> = <span class="hljs-params">(age, name)</span> -&gt;</span>
+  <span class="hljs-attribute">age</span>: age
+  <span class="hljs-attribute">name</span>: name
+
+jake = person <span class="hljs-number">22</span>, <span class="hljs-string">'jake'</span>
+
+<span class="hljs-comment"># Creating our functions</span>
+<span class="hljs-function">
+<span class="hljs-title">ageBy</span>    = <span class="hljs-params">(y)</span> -&gt;</span> (p) -&gt; person (add y, p.age), p.name
+<span class="hljs-function"><span class="hljs-title">addTitle</span> = <span class="hljs-params">(t)</span> -&gt;</span> (p) -&gt; person p.age, <span class="hljs-string">"<span class="hljs-subst">#{t}</span> <span class="hljs-subst">#{p.name}</span>"</span>
+
+ageBy1       = ageBy <span class="hljs-number">1</span>
+addTitleInd  = addTitle <span class="hljs-string">'Ind.'</span>
+
+<span class="hljs-comment"># Composing them together</span>
+<span class="hljs-function">
+<span class="hljs-title">formatPerson</span>  = <span class="hljs-params">(p)</span> -&gt;</span> ageBy1 (addTitleInd jake)
+formattedJake = formatPerson jake</code></pre>
+
+<p>First we begin by defining our own value, <code>person</code>, and we create an example <code>person</code> named <code>jake</code>.<br>We continue by defining the functions <code>ageBy</code> and <code>addTitle</code>, which are functions that return functions.<br>We then partially apply these functions in order to create the functions <code>ageBy1</code> and <code>addTitleInd</code>.<br>These will be the functions that will directly compose with the <code>person</code> value.</p>
+<p>Next we show how to use our new functions in composition with the <code>person</code> value.<br>We start by creating the function <code>formatPerson</code>, which takes in a <code>person</code> value and composes it with our functions. Finally we call <code>formatPerson</code> with the <code>person</code> value <code>jake</code>, which was defined in the first step.<br>The results are that we&#39;ve produced another <code>person</code> value, one with the name &quot;Ind. Jake&quot;, and the age of <code>23</code>.<br>And we did this easily by combining the functions <code>ageBy1</code> and <code>addTitleInd</code> inside of <code>formatPerson</code>.  </p>
+<p>All together, function composition has allowed us to chain together these transformations into our desired result.<br>Though there is still a potential flaw in our system&#39;s design.<br>What would happen if some our functions were not able to return a value?</p>
+<h3 id="the-non-value-returning-function">The Non-Value Returning Function</h3>
+<p>So far, we&#39;ve gone over several examples to show how we can compose our functions with values.<br>Though all of those examples were made under the assumption that we can return values from our functions.<br>What would happen if we couldn&#39;t use our simple pattern in certain places of the program?<br>And more importantly does such a scenario exist?</p>
+<p>As of matter of fact, that scenario does exist.<br>It is likely that there are several variations of this issue, but we&#39;re only going to be focusing on one.<br>And that variation would be asynchronous programming.</p>
+<p>Up until now, we&#39;ve only showed code samples that were <em>synchronous</em> operations.<br>What if we have an operation that should be asynchronous, like reading a file?<br>If that&#39;s the case then we&#39;re faced with a constraint that limits the ways we can compose our functions.</p>
+<pre><code class="hljs coffeescript">readFile <span class="hljs-string">'./file'</span>, <span class="hljs-function"><span class="hljs-params">(err, data)</span> -&gt;</span>
+  <span class="hljs-comment"># logic</span></code></pre>
+
+<p>Here we&#39;ve introduced a rather simple, run-of-the-mill example of the use of some asynchronous code.<br>We have the <code>readFile</code> function, which will take in a path to a file as a string.<br>It will also be passed in a function that will act as the correspondent of the results.  </p>
+<p>Once the asynchronous operation is finished, the function will be called with the read file data.<br>We then use our own logic, in the body of the passed in function, to access that data.<br>We do this because the <code>readFile</code> function cannot return the results at the end of the function.<br>This is because the operation is asynchronous.</p>
+<pre><code class="hljs coffeescript"><span class="hljs-function"><span class="hljs-title">append</span>  = <span class="hljs-params">(s)</span> -&gt;</span> (f) -&gt; <span class="hljs-string">"<span class="hljs-subst">#{f}</span><span class="hljs-subst">#{s}</span>"</span>
+<span class="hljs-function"><span class="hljs-title">prepend</span> = <span class="hljs-params">(s)</span> -&gt;</span> (f) -&gt; <span class="hljs-string">"<span class="hljs-subst">#{s}</span><span class="hljs-subst">#{f}</span>"</span>
+
+appendFooter  = append <span class="hljs-string">'Footer'</span>
+prependHeader = prepend <span class="hljs-string">'Header'</span></code></pre>
+
+<p>Above, we begin by creating the functions <code>append</code> and <code>prepend</code>.<br>Both of these functions take in a string, and then return a function that takes in file data.<br>Using more partial application, we&#39;ll also create the <code>prependHeader</code> and <code>appendFooter</code> functions.<br>These functions are intended to be the ones that will be composed directly with the file data.<br>Now that we have defined our functions, we can see what will happen when we compose them with <code>readFile</code>.</p>
+<pre><code class="hljs coffeescript">file = readFile <span class="hljs-string">'./file'</span>, <span class="hljs-function"><span class="hljs-params">(err, data)</span> -&gt;</span>
+  <span class="hljs-comment"># logic</span>
+<span class="hljs-comment"># file == ???</span>
+
+formattedFile = prependHeader (appendFooter file)
+<span class="hljs-comment"># formattedFile == ???</span></code></pre>
+
+<p>Well as we&#39;ve mentioned already, <code>readFile</code> doesn&#39;t return anything, so we can&#39;t compose with it directly.<br>We solely need to rely on the passed in function to receive the results of the asynchronous operation.<br>With that architecture forced upon us, we are required to do all of our composition inside the body of the passed in function.</p>
+<pre><code class="hljs coffeescript">readFile <span class="hljs-string">'./file'</span>, <span class="hljs-function"><span class="hljs-params">(err, data)</span> -&gt;</span>
+  formattedFile = prependHeader (appendFooter data)</code></pre> 
+
+<p>Now this may not seem problematic at first, but there are a few things to consider about this code.</p>
+<h4 id="1-what-does-our-function-take-">1. What does our function take?</h4>
+<p>At the moment we&#39;re conflating two things in the function arguments: the arguments needed for the computation, as well as the mechanism used for &quot;unwrapping&quot; the asynchronous operation. We&#39;re essentially exposing how we&#39;re handling the delivery of the asynchronous results through the function arguments instead of through the return value.</p>
+<p><strong>Note</strong><br>We use the term &quot;unwrapping&quot; to depict that the asynchronous operation is a package that contains the results of the operation. We &quot;unwrap&quot; it by waiting until the operation is finished and having the passed in function called with those results</p>
+<h4 id="2-what-does-our-function-give-">2. What does our function give?</h4>
+<p>Nothing.<br>So far, we&#39;ve derived a lot of power from composing together functions that return values.<br>When we have functions that don&#39;t return anything, we&#39;ve essentially thrown a monkey wrench into our function composition.</p>
+<h4 id="conclusion">Conclusion</h4>
+<p>We should prefer an abstraction that allows us to return asynchronous values.<br>This way our asynchronous functions perform their computations and then return a value that we can compose our functions with.</p>
+<h3 id="the-pending-value">The Pending Value</h3>
+<p>In our case we already know of an existing abstraction that is used as the pending value, it&#39;s commonly referred to as a <strong>Promise</strong>. Which means we can begin to use <strong>Promises</strong> as a way to compose together our asynchronous operations with our synchronous ones.</p>
+<pre><code class="hljs coffeescript"><span class="hljs-comment"># Calling readFile</span>
+
+promise = readFile <span class="hljs-string">'./file'</span>
+
+<span class="hljs-comment"># Composing the Promise with our Functions</span>
+
+promise
+  .<span class="hljs-keyword">then</span> (fileData) -&gt; <span class="hljs-comment"># logic with fileData</span>
+  .<span class="hljs-keyword">catch</span> (err) -&gt; <span class="hljs-comment"># error handling</span>
+
+<span class="hljs-comment"># or</span>
+
+promise = readFile <span class="hljs-string">'./file'</span>
+promise
+  .<span class="hljs-keyword">then</span> (fileData) -&gt; prependHeader (appendFooter fileData)
+  .<span class="hljs-keyword">then</span> (formattedFile) -&gt; <span class="hljs-comment"># logic with formattedFile</span>
+  .<span class="hljs-keyword">catch</span> (err) -&gt; <span class="hljs-comment"># error handling</span>
+
+<span class="hljs-comment"># or</span>
+
+promise
+  .<span class="hljs-keyword">then</span> appendFooter
+  .<span class="hljs-keyword">then</span> prependHeader
+  .<span class="hljs-keyword">then</span> (formattedFile) -&gt; <span class="hljs-comment"># logic with formattedFile</span>
+  .<span class="hljs-keyword">catch</span> (err) -&gt; <span class="hljs-comment"># error handling</span></code></pre>
+
+<p>In the first step we redefine <code>readFile</code> to be a function that returns a pending value, or a <strong>Promise</strong>.<br>That now makes the file path the only argument the function needs now. Once given the file path, <code>readfile</code> will return a <strong>Promise</strong>, and when the operation is finished it will contain the file data.  </p>
+<p>We then go one to use the methods of the <strong>Promise</strong> to access the results of the operation.<br>Above we show how we use these methods to pass the results into our <code>appendFooter</code> and <code>prependHeader</code> functions.
+Now that we&#39;ve designed <code>readFile</code> to be a function that returns a <strong>Promise</strong>, we can now start defining functions that will compose with the <strong>Promises</strong>.</p>
+<pre><code class="hljs coffeescript"><span class="hljs-function"><span class="hljs-title">formatFile</span> = <span class="hljs-params">(file)</span> -&gt;</span> prependHeader (appendFooter file)
+<span class="hljs-function"><span class="hljs-title">formatFileAsync</span> = <span class="hljs-params">(promise)</span> -&gt;</span> promise.<span class="hljs-keyword">then</span> formatFile
+<span class="hljs-function">
+<span class="hljs-title">readFormat</span> = <span class="hljs-params">(path)</span> -&gt;</span> formatFileAsync (readFile path)
+
+promise = readFormat <span class="hljs-string">'./file'</span>
+promise.<span class="hljs-keyword">then</span> (formattedFile) -&gt; <span class="hljs-comment"># do something with formattedFile</span></code></pre>
+
+<p>Above we&#39;ve defined two functions.<br><code>formatFileAsync</code> for unwrapping the <strong>Promise</strong> value with the <code>then</code> method.<br>And <code>formatFile</code> which takes in the file data and performs the transformations.  </p>
+<p>We then create a new function, <code>readFormat</code>, that abstracts over <code>readFile</code> and <code>formatFileAsync</code>.<br><code>readFormat</code> will take in the path to file and call the <code>readFile</code> function with that argument.<br>We then use the <code>formatFileAsync</code> function to compose with the promise from <code>readFile</code>.<br>Finally we return the <strong>Promise</strong> of the formatted read file.</p>
+<p>Now let&#39;s compare this to what we originally had.</p>
+<h4 id="1-what-does-our-function-take-">1. What does our function take?</h4>
+<p>Our function only receives the arguments needed to perform the operation.<br>We&#39;re no longer conflating the &quot;unwrappping&quot; mechanism with the function&#39;s arguments.</p>
+<h4 id="2-what-does-our-function-give-">2. What does our function give?</h4>
+<p>A <strong>Value</strong>. More specifically a <strong>Promise</strong>.<br>As we said before, we derive power from being able to compose our functions.<br>Before we were limited because we didn&#39;t return a value, but now we&#39;re able to return a pending value.<br>We&#39;ve gone and removed the monkey wrench that was previously casted into our system.  </p>
+<p><strong>Note</strong><br>The &quot;unwrapping&quot; mechanism is now the <strong>Promise</strong> itself. We&#39;ve standardized on a way for us to represent pending values as <strong>Promises</strong>, which means the <strong>Promise</strong> can/will understand how to &quot;unwrap&quot; itself.</p>
+<h4 id="conclusion">Conclusion</h4>
+<p>We&#39;ve successfully taken are formally <em>Non-Value Returning Function</em>, and modified it to be a value returning function. Which makes us able to compose more functions with that value. </p>
+<h3 id="summary">Summary</h3>
+<p>To be clear, the message here isn&#39;t necessarily &quot;use Promises&quot;, but more so &quot;use Values&quot;.<br>When you&#39;re able to represent pieces of your system as values, you&#39;re able to compose with those values.<br>In the case of asynchronous operations, we&#39;re able to represent them as <strong>Promises</strong>, and with <strong>Promises</strong> we&#39;re able to achieve the function composition we want.</p>
+</div></article><footer>&copy; Sean Hagstrom</footer></div></body></html>
