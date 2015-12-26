@@ -53,7 +53,7 @@ block main
         if collections.essays && collections.essays.length > 0
           each talk in collections.talks
             .talk-item
-              h2
+              div
                 span.item-title= talk.title
                 if talk.videoLink
                   span.item-media
@@ -67,7 +67,7 @@ block main
                     |]
                 span.item-date - #{moment(talk.publishDate).format("YYYY")}
         else
-          h2= collections.essays.length
+          h2 N/A
           p Nothing here yet, but plenty of stuff on the way.
     .row
       .cute-12
@@ -78,10 +78,10 @@ block main
         if collections.essays && collections.essays.length > 0
           each essay in collections.essays
             .post-item
-              h2
+              div
                 span.item-title
                   a(href='/'+essay.path)!= essay.title
                 span.item-date - #{moment(essay.publishDate).format("YYYY")}
         else
-          h2= collections.essays.length
+          h2 N/A
           p Nothing here yet, but plenty of stuff on the way.
