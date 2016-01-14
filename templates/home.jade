@@ -36,18 +36,18 @@ block main
               a(href='//gitlab.com/u/seanstrom') Gitlab
             span.tag
               a(href='mailto:sean@seanhagstrom.com') sean@seanhagstrom.com
-    .row
-      .cute-12
-        h1.section-title Projects
-    hr
-    .row.inset
-      .cute-6
-        h2 N/A
-        p Nothing here yet, but plenty of stuff on the way.
+    //- .row
+    //-   .cute-12
+    //-     h1.section-title Projects
+    //- hr
+    //- .row.inset
+    //-   .cute-6
+    //-     h2 N/A
+    //-     p Nothing here yet, but plenty of stuff on the way.
     .row
       .cute-12
         h1.section-title Talks
-    hr
+    //- hr
     .row.inset
       .cute-6
         if collections.essays && collections.essays.length > 0
@@ -69,19 +69,19 @@ block main
         else
           h2 N/A
           p Nothing here yet, but plenty of stuff on the way.
-    .row
-      .cute-12
-        h1.section-title Writing
-    hr
-    .row.inset
-      .cute-6
-        if collections.essays && collections.essays.length > 0
-          each essay in collections.essays
-            .post-item
-              div
-                span.item-title
-                  a(href='/'+essay.path)!= essay.title
-                span.item-date - #{moment(essay.publishDate).format("YYYY")}
-        else
-          h2 N/A
-          p Nothing here yet, but plenty of stuff on the way.
+    //- .row
+    //-   .cute-12
+    //-     h1.section-title Writing
+    //- hr
+    //- .row.inset
+    //-   .cute-6
+    //-     if collections.essays && collections.essays.length > 0
+    //-       each essay in collections.essays
+    //-         .post-item
+    //-           div
+    //-             span.item-title
+    //-               a(href='/'+essay.path)!= essay.title
+    //-             span.item-date - #{moment(essay.publishDate).format("YYYY")}
+    //-     else
+    //-       h2 N/A
+    //-       p Nothing here yet, but plenty of stuff on the way.

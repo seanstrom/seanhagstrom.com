@@ -11,6 +11,8 @@ h5 { font-size: 0.875rem; line-height: 20px; margin-bottom: 20px; }
 h6 { font-size: 0.75rem; line-height: 20px; margin-bottom: 20px; }
 
 html
+  .row
+    max-width 45rem
   pre
   code
     @extend .hljs
@@ -55,7 +57,7 @@ p > code
 
 html body
   background-color #FAFAFA
-  border-top 5px solid #CF9A9A
+  border-top 5px solid #02b875
   color #333
   margin 0
   font-family "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif
@@ -108,7 +110,7 @@ body hr
   margin 0 4px
 
 .pipe:before
-  color #F0E7E7
+  color #e2e2e2
   content '|'
   font-size 40px
   margin 0 10px 0 10px
@@ -172,5 +174,8 @@ body
 .home .about
   margin-bottom 20px
 
+  p
+    margin-bottom 0
+
 .section-title
-  margin-bottom 0.2em
+  margin-bottom 0
