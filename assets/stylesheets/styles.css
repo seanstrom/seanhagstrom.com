@@ -234,13 +234,12 @@ h6 {
   line-height: 20px;
   margin-bottom: 20px;
 }
-html {
-  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-  font-weight: 300;
+html .row {
+  max-width: 45rem;
 }
 html pre {
   border: 1px solid #f2f2f2;
-  font-size: 110%;
+  font-size: 99%;
   margin-bottom: 30px;
   margin-top: 30px;
 }
@@ -268,20 +267,24 @@ p > code {
 }
 .home .post-item .item-title,
 .home .talk-item .item-title {
-  margin-right: 10px;
+  margin-right: 0.25em;
 }
 .home .post-item .item-media,
 .home .talk-item .item-media {
-  margin-right: 4px;
+  margin-right: 0.1em;
 }
 .home .talk-item .item-date {
-  margin-left: 6px;
+  margin-left: 0.25em;
 }
 html body {
   background-color: #fafafa;
-  border-top: 5px solid #cf9a9a;
+  border-top: 5px solid #02b875;
   color: #333;
   margin: 0;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font: 1.125em "HelveticaNeue-Light", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.3em;
 }
 html body header {
   border-bottom-width: 2px;
@@ -326,7 +329,7 @@ body hr {
   margin: 0 4px;
 }
 .pipe:before {
-  color: #f0e7e7;
+  color: #e2e2e2;
   content: '|';
   font-size: 40px;
   margin: 0 10px 0 10px;
@@ -357,6 +360,7 @@ body hr {
 }
 .menu-link {
   color: #333;
+  font-size: 0.875rem;
   text-decoration: none;
 }
 .menu-linkhover {
@@ -366,17 +370,13 @@ article {
   font-weight: 500;
 }
 article p {
-  font-size: 130%;
-  line-height: 140%;
+  font-size: 100%;
 }
 article img {
   max-width: 100%;
 }
-.home p,
-.home ul {
-  font-size: 130%;
-  line-height: 140%;
-}
+.home p .tag,
+.home ul .tag,
 .tags .tag {
   background-color: #fff;
   padding: 5px;
@@ -384,6 +384,7 @@ article img {
   border: 1px solid #ccc;
   margin: 0 4px 4px 0;
   display: inline-block;
+  font-size: 0.875rem;
 }
 body {
   padding: 0 1em;
@@ -391,6 +392,9 @@ body {
 .home .about {
   margin-bottom: 20px;
 }
+.home .about p {
+  margin-bottom: 0;
+}
 .section-title {
-  margin-bottom: 0.2em;
+  margin-bottom: 0;
 }
