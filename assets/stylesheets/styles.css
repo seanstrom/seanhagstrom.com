@@ -249,6 +249,7 @@ body {
   border-right: 1px solid #f1f1f1;
 }
 html {
+  background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/geometry2.png");
   border-bottom: 20px solid #e4e4e4;
   border-top: 20px solid #02b87d;
 }
