@@ -245,8 +245,8 @@ body {
   min-height: 100%;
   background: #fff;
   padding: 0 1em 22px;
-  border-left: 1px solid #f1f1f1;
-  border-right: 1px solid #f1f1f1;
+  border-left: 2px solid #bfecc2;
+  border-right: 2px solid #bfecc2;
 }
 html {
   background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/congruent_pentagon.png");
