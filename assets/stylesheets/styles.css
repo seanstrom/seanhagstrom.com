@@ -309,10 +309,10 @@ html body header {
   padding: 40px 0 10px;
 }
 html body footer {
-  border-top-color: #eaeaea;
   border-top: none;
-  bottom: 0;
-  position: absolute;
+  margin: 3px auto 0;
+  padding: 0 1.125rem;
+  width: 60rem;
 }
 main {
   padding: 10px 0;
