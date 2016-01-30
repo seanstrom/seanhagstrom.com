@@ -11,8 +11,14 @@ h5 { font-size: 0.875rem; line-height: 20px; margin-bottom: 20px; }
 h6 { font-size: 0.75rem; line-height: 20px; margin-bottom: 20px; }
 
 html
+  border-bottom 20px solid #E4E4E4
+  border-top 20px solid #02B87D
+  min-height 100%
+  padding-bottom 42px
+  position relative
+
   .row
-    max-width 45rem
+    max-width 60rem
   pre
   code
     @extend .hljs
@@ -56,8 +62,7 @@ p > code
       margin-left 0.25em
 
 html body
-  background-color #FAFAFA
-  border-top 5px solid #02b875
+  background-color #FFF
   color #333
   margin 0
   font-family "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif
@@ -68,11 +73,13 @@ html body
   header
     border-bottom-width 2px
     border-bottom-color #eaeaea
-    padding 20px 0 10px
+    padding 40px 0 10px
 
   footer
     border-top-color #eaeaea
     border-top none
+    bottom 0
+    position absolute
 
 main
   padding 10px 0
@@ -160,10 +167,10 @@ article
 
 .tags
   .tag
-    background-color #fff
+    background-color #fafafa
     padding 5px
     border-radius 3px
-    border 1px solid #ccc
+    border 1px solid #e2e2e2
     margin 0 4px 4px 0
     display inline-block
     font-size 0.875rem
@@ -172,7 +179,7 @@ body
   padding 0 1em
 
 .home .about
-  margin-bottom 20px
+  margin-bottom 0.6rem
 
   p
     margin-bottom 0
