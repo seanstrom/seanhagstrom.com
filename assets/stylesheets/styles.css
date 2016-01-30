@@ -242,14 +242,14 @@ body {
 .container-long {
   border: 2px solid #f1f1f1;
   max-width: 60rem;
-  margin: 20px auto;
+  margin: 0 auto;
   min-height: 100%;
   background: #fff;
   padding: 0 1em 22px;
 }
 html {
   background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/crossword.png");
-  padding-bottom: 20px;
+  padding: 20px 0 30px;
   border-top: 20px solid #02b87d;
 }
 html .row {
