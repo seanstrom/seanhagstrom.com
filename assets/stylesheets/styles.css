@@ -352,12 +352,19 @@ body hr {
 .dash {
   margin: 0 4px;
 }
+.separator:before,
 .pipe:before {
   color: #e2e2e2;
-  content: '|';
   font-size: 40px;
   margin: 0 10px 0 10px;
 }
+.pipe:before {
+  content: '|';
+}
+.separator:before {
+  content: '\2301';
+}
+.separator.first:before,
 .pipe.first:before {
   margin: 0 10px 0 0;
 }
