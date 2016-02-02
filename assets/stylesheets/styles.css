@@ -253,9 +253,9 @@ body {
   padding: 0 1em 22px;
 }
 html {
-  background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/crossword.png");
+  background-color: #f9f9f9;
   padding: 20px 0 30px;
-  border-top: 20px solid #02b87d;
+  border-top: 10px solid #02b87d;
 }
 html .row {
   max-width: 60rem;
@@ -310,7 +310,7 @@ html body {
 }
 html body header {
   border-bottom-width: 2px;
-  border-bottom-color: #eaeaea;
+  border-bottom-color: #f1f1f1;
   padding: 40px 0 10px;
 }
 html body footer {
