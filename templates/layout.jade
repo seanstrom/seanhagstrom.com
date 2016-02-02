@@ -28,20 +28,22 @@ html
       block styles
   body
     block body
-      .row
-        header
-          span.pipe.first
-          h1.site-header
-            a(href='/') &lambda;!
-          span.pipe
-          block headerPostData
-            nav
-              a.menu-link(href='//lambda-mtn.ghost.io') Blog
-              span.dash -
-              a.menu-link(href='//twitter.com/seanghagstrom') Twitter
-              span.dash -
-              a.menu-link(href='//github.com/seanstrom') Github
-              span.dash -
-              a.menu-link(href='//gitlab.com/u/seanstrom') Gitlab
-        block main
-        footer 2016 &copy; Sean Hagstrom
+      .container-long
+        .row
+          header
+            span.pipe.first
+            h1.site-header
+              //- a(href='/') &lambda;!
+              a(href='/') \x.x
+            span.pipe
+            block headerPostData
+              nav
+                a.menu-link(href='//lambda-mtn.ghost.io') Blog
+                span.dash -
+                a.menu-link(href='//twitter.com/seanghagstrom') Twitter
+                span.dash -
+                a.menu-link(href='//github.com/seanstrom') Github
+                span.dash -
+                a.menu-link(href='//gitlab.com/u/seanstrom') Gitlab
+          block main
+      footer 2016 &copy; Sean Hagstrom

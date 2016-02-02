@@ -10,12 +10,28 @@ h4 { font-size: 1rem; line-height: 20px; margin-bottom: 20px; }
 h5 { font-size: 0.875rem; line-height: 20px; margin-bottom: 20px; }
 h6 { font-size: 0.75rem; line-height: 20px; margin-bottom: 20px; }
 
-html
-  border-bottom 20px solid #E4E4E4
-  border-top 20px solid #02B87D
+a
+ color #3F997C
+ &:hover
+   color #3F997C
+
+html, body
+  height 100%
   min-height 100%
-  padding-bottom 42px
-  position relative
+
+.container-long
+  border 2px solid #F1F1F1
+  max-width 60rem
+  margin 0 auto
+  // min-height 100%
+  background #fff
+  padding 0 1em 22px
+
+html
+  // background url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/crossword.png")
+  background-color #f9f9f9
+  padding 20px 0 30px
+  border-top 10px solid #02B87D
 
   .row
     max-width 60rem
@@ -62,7 +78,7 @@ p > code
       margin-left 0.25em
 
 html body
-  background-color #FFF
+  background none
   color #333
   margin 0
   font-family "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif
@@ -72,14 +88,15 @@ html body
 
   header
     border-bottom-width 2px
-    border-bottom-color #eaeaea
+    // border-bottom-color #eaeaea
+    border-bottom-color #f1f1f1
     padding 40px 0 10px
 
   footer
-    border-top-color #eaeaea
     border-top none
-    bottom 0
-    position absolute
+    margin 3px auto 0
+    padding 0 1.125rem
+    width 60rem
 
 main
   padding 10px 0
@@ -103,9 +120,7 @@ body hr
 .container
   margin-left auto
   margin-right auto
-  // max-width 980px
   padding 0 20px
-  // width 100%
 
 .banner-header
   margin 0
@@ -116,12 +131,19 @@ body hr
 .dash
   margin 0 4px
 
+.separator:before
 .pipe:before
   color #e2e2e2
-  content '|'
   font-size 40px
   margin 0 10px 0 10px
 
+.pipe:before
+  content '|'
+
+.separator:before
+  content '\2301'
+
+.separator.first:before
 .pipe.first:before
   margin 0 10px 0 0
 
