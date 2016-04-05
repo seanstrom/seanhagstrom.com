@@ -234,11 +234,19 @@ h6 {
   line-height: 20px;
   margin-bottom: 20px;
 }
-a {
+.green-links {
   color: #3f997c;
 }
-a:hover {
+.green-links:hover {
   color: #3f997c;
+}
+.purple-links,
+a {
+  color: #4e54cc;
+}
+.purple-links:hover,
+a:hover {
+  color: #4e54cc;
 }
 html,
 body {
@@ -255,7 +263,7 @@ body {
 html {
   background-color: #f9f9f9;
   padding: 20px 0 30px;
-  border-top: 10px solid #02b87d;
+  border-top: 10px solid #747af9;
 }
 html .row {
   max-width: 60rem;
