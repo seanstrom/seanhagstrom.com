@@ -10,10 +10,18 @@ h4 { font-size: 1rem; line-height: 20px; margin-bottom: 20px; }
 h5 { font-size: 0.875rem; line-height: 20px; margin-bottom: 20px; }
 h6 { font-size: 0.75rem; line-height: 20px; margin-bottom: 20px; }
 
+.green-links
+  color #3F997C
+  &:hover
+    color #3F997C
+
+.purple-links
+  color #4E54CC
+  &:hover
+    color #4E54CC
+
 a
- color #3F997C
- &:hover
-   color #3F997C
+  @extend .purple-links
 
 html, body
   height 100%
@@ -31,7 +39,8 @@ html
   // background url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/crossword.png")
   background-color #f9f9f9
   padding 20px 0 30px
-  border-top 10px solid #02B87D
+  // border-top 10px solid #02B87D
+  border-top 10px solid #747AF9
 
   .row
     max-width 60rem
